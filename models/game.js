@@ -5,23 +5,38 @@ const Schema = mongoose.Schema;
 
 const gameSchema = new Schema({
   location: {
-    type: { type: String },
-    coordinates: [Number]
+    type: [Number]
   },
-  startTime: TimeRanges, // START TIME NOT TIME RANGES,
-  duration: Number,
-  owner: String,
-  playersNeeded: Number,
-  type: String,
+  startTime: {
+    type: Date
+  },
+
+  endTime: {
+    type: Date
+  },
+
+  owner: {
+    type: ObjectId,
+    ref: "User"
+  },
+  playersNeeded: { type: Number },
+  sport: {
+    type: String,
+    enum: ["Volleyball", "Football", "Basketball", "Paddel"],
+    default: "Volleyball"
+  },
   state: {
     type: String,
     enum: ["Coming Up", "Currently On", "Ended"],
     default: "Coming Up"
   },
-  playersAttending: [String]
+  playersAttending: {
+    type: [ObjectId],
+    ref: "User"
+  }
 });
 
-const User = mongoose.model("Game", gameSchema);
+const Game = mongoose.model("Game", gameSchema);
 
 module.exports = {
   Game
