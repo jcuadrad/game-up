@@ -13,7 +13,7 @@ const MongoStore = require('connect-mongo')(session);
 const dotenv = require('dotenv');
 
 const passportConfiguration = require('./helpers/passport')
-const index = require('./routes/index');
+const game = require('./routes/game');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 
