@@ -14,6 +14,7 @@ const dotenv = require("dotenv");
 
 var index = require("./routes/index");
 var users = require("./routes/users");
+var auth = require("./routes/auth");
 
 var app = express();
 
@@ -30,15 +31,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
+app.use("/", auth);
 app.use("/users", users);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.status(404);
   res.render("not-found");
 });
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // always log the error
   console.error("ERROR", req.method, req.path, err);
 
