@@ -78,7 +78,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', game);
 app.use('/auth', auth);
 app.use('/users', users);
 
