@@ -2,16 +2,17 @@ var express = require("express");
 var router = express.Router();
 
 /* GET home page. */
-<<<<<<< HEAD
-router.get('/', function(req, res, next) {
-  res.render('games');
-=======
 router.get("/new", (req, res, next) => {
   res.render("game/new");
->>>>>>> acc79ec5f979e6c1689cbfd43d03e26f47bcc0dc
 });
 
-router.post("/new", (req, res, next) => {
+//NEW GAME
+
+// router.get("/:gameId", (req, res, next) => {
+//   res.render("game/edit", { title: "Edit Game" });
+// });
+
+router.post("/new/:id", (req, res, next) => {
   const newGame = {
     location: req.body.location,
     startTime: req.body.startTime,
@@ -24,23 +25,13 @@ router.post("/new", (req, res, next) => {
   };
 });
 
-// CREATE NEW GAME
-router.get("/:gameId", (req, res, next) => {
-  res.render("game/edit", { title: "Edit Game" });
+//GET GAME
+router.get("/game", (req, res, next) => {
+  res.render("/game");
 });
 
-// router.get("/", (req, res, next) => {
-//   Team.find({ owner: req.user._id }, (err, result) => {
-//     if (err) {
-//       next(err);
-//       return;
-//     }
-//     const data = {
-//       teams: result,
-//       message: req.flash("message")
-//     };
-//     res.render("team/index", data);
-//   });
-// });
+router.post("/game", (req, res, next) => {
+  res.render("/game/:id/join");
+});
 
 module.exports = router;

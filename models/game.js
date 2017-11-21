@@ -16,7 +16,7 @@ const gameSchema = new Schema({
   },
 
   owner: {
-    type: ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User"
   },
   playersNeeded: { type: Number },
@@ -31,7 +31,7 @@ const gameSchema = new Schema({
     default: "Coming Up"
   },
   playersAttending: {
-    type: [ObjectId],
+    type: [Schema.Types.ObjectId],
     ref: "User"
   }
 });

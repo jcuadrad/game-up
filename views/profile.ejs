@@ -1,0 +1,23 @@
+<h1>Welcome, User</h1>
+
+
+<div id="gamesCreated">
+    <h3>Games Created</h3>
+    <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
+        <ul>
+            <%= gamesCreated[ix]%>
+        </ul>
+        <% } %>
+</div>
+
+<div id="gamesAttended">
+    <h3>Games Attended</h3>
+
+    <% for (let ix = 0; ix < gamesAttended.length; ix++) { %>
+        <ul>
+            <%= gamesAttended[ix]%>
+        </ul>
+        <% } %>
+
+
+</div>
