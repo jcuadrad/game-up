@@ -40,10 +40,12 @@ const gameSchema = new Schema({
     enum: ["Coming Up", "Currently On", "Ended"],
     default: "Coming Up"
   },
-  playersAttending: {
-    type: [Schema.Types.ObjectId],
-    ref: "User"
-  }
+  playersAttending: [
+    {
+      type: [Schema.Types.ObjectId],
+      ref: "User"
+    }
+  ]
 });
 
 gameSchema.index({ location: "2dsphere" });
