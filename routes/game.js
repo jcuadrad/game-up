@@ -2,13 +2,13 @@ var express = require("express");
 var router = express.Router();
 
 /* GET home page. */
-<<<<<<< HEAD
 router.get('/', function(req, res, next) {
   res.render('games');
-=======
+});
+
+
 router.get("/new", (req, res, next) => {
-  res.render("game/new");
->>>>>>> acc79ec5f979e6c1689cbfd43d03e26f47bcc0dc
+ res.render("edit");
 });
 
 router.post("/new", (req, res, next) => {
