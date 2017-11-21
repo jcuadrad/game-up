@@ -37,22 +37,10 @@ function initMap() {
         }));
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
-        console.log(place.geometry.location.lat());
-        console.log(place.geometry.location.lng());
-        console.log(place.icon);
-        //Location details
-        // for (var i = 0; i < place.address_components.length; i++) {
-        //     if(place.address_components[i].types[0] == 'postal_code'){
-        //         document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
-        //     }
-        //     if(place.address_components[i].types[0] == 'country'){
-        //         document.getElementById('country').innerHTML = place.address_components[i].long_name;
-        //     }
-        // }
-        // document.getElementById('location').innerHTML = place.formatted_address;
-        // document.getElementById('lat').innerHTML = place.geometry.location.lat();
-        // document.getElementById('lon').innerHTML = place.geometry.location.lng();
+        document.getElementById('cityLat').value = place.geometry.location.lat();
+        document.getElementById('cityLng').value = place.geometry.location.lng();
     });
 }
+
 
 initMap();
