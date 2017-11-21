@@ -3,10 +3,20 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+function arrayLimit(val) {
+  return val.length <= 10;
+}
+
 const gameSchema = new Schema({
-  location: {
-    type: [Number]
+  name: {
+    type: String
   },
+
+  location: {
+    type: { type: String },
+    coordinates: [Number]
+  },
+
   startTime: {
     type: Date
   },
@@ -35,6 +45,8 @@ const gameSchema = new Schema({
     ref: "User"
   }
 });
+
+gameSchema.index({ location: "2dsphere" });
 
 const Game = mongoose.model("Game", gameSchema);
 

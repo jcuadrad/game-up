@@ -29,7 +29,7 @@ router.get("/login", function(req, res, next) {
   
   router.post("/login",
     passport.authenticate("local", {
-      successRedirect: "/auth/test",
+      successRedirect: "/",
       failureRedirect: "/auth/login",
       failureFlash: true,
       passReqToCallback: true
@@ -82,7 +82,7 @@ router.post('/signup', (req, res, next) => {
         }
   
         req.login(newUser, () => {
-          res.redirect('/auth/test');
+          res.redirect('/');
         });
       });
     });
