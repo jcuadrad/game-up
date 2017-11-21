@@ -1,8 +1,8 @@
-const express = require("express");
-const ensureLogin = require("connect-ensure-login");
+const express = require('express');
+const ensureLogin = require('connect-ensure-login');
 const router = express.Router();
 
-const Game = require("../models/game").Game;
+const Game = require('../models/game').Game;
 
 /* GET home page. */
 router.get("/", ensureLogin.ensureLoggedIn("/auth/login"), (req, res, next) => {
@@ -16,10 +16,17 @@ router.get(
     res.render("edit");
   }
 );
+router.get('/', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
+  res.render('games');
+});
 
-router.post("/new", (req, res, next) => {
+router.get('/new', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
+  res.render('edit');
+});
+
+router.post('/new', (req, res, next) => {
   let location = {
-    type: "Point",
+    type: 'Point',
     coordinates: [req.body.cityLat, req.body.cityLng]
   };
 
@@ -33,23 +40,43 @@ router.post("/new", (req, res, next) => {
     sport: req.body.sport
   });
 
+<<<<<<< HEAD
   // Save the game to the Database
+=======
+    // Save the game to the Database
+>>>>>>> 34d5d73c7fe0801a4b484eef62791586f4616bf4
   newGame.save(error => {
     if (error) {
       console.log(error);
     } else {
+<<<<<<< HEAD
       res.redirect("/");
+=======
+      res.redirect('/');
     }
   });
 });
 
-//GET GAME
-router.get("/game", (req, res, next) => {
-  res.render("/game");
+router.get('/games/json', (req, res, next) => {
+  Game.find((error, games) => {
+    if (error) {
+      console.log('error', error);
+      res.status(500).json({ error: 'FUUUUUUU!' });
+    } else {
+      res.json(games);
+      console.log(games);
+>>>>>>> 34d5d73c7fe0801a4b484eef62791586f4616bf4
+    }
+  });
 });
 
-router.post("/game", (req, res, next) => {
-  res.render("/game/:id/join");
+// GET GAME
+router.get('/game', (req, res, next) => {
+  res.render('/game');
+});
+
+router.post('/game', (req, res, next) => {
+  res.render('/game/:id/join');
 });
 
 module.exports = router;
