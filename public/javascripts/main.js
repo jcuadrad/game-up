@@ -8,6 +8,18 @@ function startMainMap () {
     fullscreenControl: false
   });
 
+  map.addListener('click', function (e) {
+    placeMarker(e.latLng, map);
+  });
+
+  function placeMarker (position, map) {
+    var marker = new google.maps.Marker({
+      position: position,
+      map: map
+    });
+    map.panTo(position);
+  }
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       function (position) {
@@ -19,6 +31,35 @@ function startMainMap () {
           // Center map with user location
         map.setCenter(userLocation);
         map.setZoom(15);
+
+        var myMarker = new google.maps.Marker({
+          position: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          },
+          map: map,
+          title: 'Im here',
+          animation: google.maps.Animation.DROP
+        });
+
+        myMarker.setIcon(({
+          url: 'http://icons.iconarchive.com/icons/danieledesantis/playstation-flat/512/playstation-circle-dark-icon.png',
+          size: new google.maps.Size(30, 30),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(15, 15),
+          scaledSize: new google.maps.Size(30, 30)
+        }));
+
+        var cityCircle = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.5,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.15,
+          map: map,
+          center: userLocation,
+          radius: 300
+        });
       },
       function () {
         console.log('Error in the geolocation service.');
@@ -43,11 +84,11 @@ function startMainMap () {
         title: title
       });
       pin.setIcon(({
-        url: 'https://pre00.deviantart.net/47d2/th/pre/i/2017/115/a/6/rick_and_morty_png_by_lalingla-db72d4x.png',
-        size: new google.maps.Size(71, 71),
+        url: 'https://openclipart.org/image/800px/svg_to_png/195874/ts-map-pin.png',
+        size: new google.maps.Size(50, 70),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(100, 100)
+        scaledSize: new google.maps.Size(50, 70)
       }));
       markers.push(pin);
       console.log(pin.position.lat());

@@ -5,15 +5,15 @@ const router = express.Router();
 const Game = require('../models/game').Game;
 
 /* GET home page. */
-router.get("/", ensureLogin.ensureLoggedIn("/auth/login"), (req, res, next) => {
-  res.render("games");
+router.get('/', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
+  res.render('games');
 });
 
 router.get(
-  "/new",
-  ensureLogin.ensureLoggedIn("/auth/login"),
+  '/new',
+  ensureLogin.ensureLoggedIn('/auth/login'),
   (req, res, next) => {
-    res.render("edit");
+    res.render('edit');
   }
 );
 router.get('/', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
@@ -40,18 +40,11 @@ router.post('/new', (req, res, next) => {
     sport: req.body.sport
   });
 
-<<<<<<< HEAD
-  // Save the game to the Database
-=======
     // Save the game to the Database
->>>>>>> 34d5d73c7fe0801a4b484eef62791586f4616bf4
   newGame.save(error => {
     if (error) {
       console.log(error);
     } else {
-<<<<<<< HEAD
-      res.redirect("/");
-=======
       res.redirect('/');
     }
   });
@@ -65,7 +58,6 @@ router.get('/games/json', (req, res, next) => {
     } else {
       res.json(games);
       console.log(games);
->>>>>>> 34d5d73c7fe0801a4b484eef62791586f4616bf4
     }
   });
 });
