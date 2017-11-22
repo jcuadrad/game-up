@@ -1,0 +1,34 @@
+<h1>Welcome, User</h1>
+
+<div id="upcomingGames">
+    <h3>Your Upcoming Games</h3>
+    <% for (let ix = 0; ix < upcomingGames.length; ix++) { %>
+        <ul>
+            <%= upcomingGames[ix].name %>
+        </ul>
+        <% } %>
+</div>
+
+
+
+
+<div id="gamesCreated">
+    <h3>Games Created</h3>
+    <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
+        <ul>
+            <%= gamesCreated[ix].name %>
+        </ul>
+        <% } %>
+</div>
+
+<div id="gamesAttended">
+    <h3>Games Attended</h3>
+
+    <% for (let ix = 0; ix < gamesAttended.length; ix++) { %>
+        <ul>
+            <%= gamesAttended[ix].name %>
+        </ul>
+        <% } %>
+
+
+</div>

@@ -1,34 +1,29 @@
-<h1>Welcome, User</h1>
+<h1>Welcome, <%= user.username%></h1>
+
+<h2>Upcoming Games</h2>
 
 <div id="upcomingGames">
-    <h3>Your Upcoming Games</h3>
-    <% for (let ix = 0; ix < upcomingGames.length; ix++) { %>
+    <h3>Games Joined</h3>
+    <% if (upcomingGames.length) { %>
         <ul>
-            <%= upcomingGames[ix].name %>
+          <% for (let ix = 0; ix < upcomingGames.length; ix++) { %>
+            <li><%= upcomingGames[ix].name %></li>
+          <% } %>
         </ul>
         <% } %>
 </div>
-
-
-
 
 <div id="gamesCreated">
     <h3>Games Created</h3>
-    <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
+    <% if (gamesCreated.length) { %>
         <ul>
-            <%= gamesCreated[ix].name %>
+          <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
+            <li><%= gamesCreated[ix].name %></li>
+          <% } %>
         </ul>
         <% } %>
 </div>
 
-<div id="gamesAttended">
-    <h3>Games Attended</h3>
-
-    <% for (let ix = 0; ix < gamesAttended.length; ix++) { %>
-        <ul>
-            <%= gamesAttended[ix].name %>
-        </ul>
-        <% } %>
-
+<a href="/">Go Back</a>
 
 </div>

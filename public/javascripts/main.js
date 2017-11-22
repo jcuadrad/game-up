@@ -1,4 +1,5 @@
 function startMainMap () {
+  // --- Create new instance of the main map, and eliminate the default UI controls
   var map = new google.maps.Map(document.getElementById('map'), {
     zoomControl: true,
     mapTypeControl: false,
@@ -8,19 +9,10 @@ function startMainMap () {
     fullscreenControl: false
   });
 
-  map.addListener('click', function (e) {
-    placeMarker(e.latLng, map);
-  });
-
-  function placeMarker (position, map) {
-    var marker = new google.maps.Marker({
-      position: position,
-      map: map
-    });
-    map.panTo(position);
-  }
+  // --- Set user position
 
   if (navigator.geolocation) {
+    // -- Get position from the browser
     navigator.geolocation.getCurrentPosition(
       function (position) {
         const userLocation = {
@@ -28,10 +20,11 @@ function startMainMap () {
           lng: position.coords.longitude
         };
 
-          // Center map with user location
+          // Center map with user location and set default map zoom
         map.setCenter(userLocation);
         map.setZoom(15);
 
+        // Create user marker
         var myMarker = new google.maps.Marker({
           position: {
             lat: position.coords.latitude,
@@ -42,6 +35,7 @@ function startMainMap () {
           animation: google.maps.Animation.DROP
         });
 
+        // Set the Icon for the User
         myMarker.setIcon(({
           url: 'http://icons.iconarchive.com/icons/danieledesantis/playstation-flat/512/playstation-circle-dark-icon.png',
           size: new google.maps.Size(30, 30),
@@ -50,6 +44,7 @@ function startMainMap () {
           scaledSize: new google.maps.Size(30, 30)
         }));
 
+        // Create user radius circle
         var cityCircle = new google.maps.Circle({
           strokeColor: '#FF0000',
           strokeOpacity: 0.5,
@@ -63,15 +58,18 @@ function startMainMap () {
       },
       function () {
         console.log('Error in the geolocation service.');
-      }
-    );
+      });
   } else {
     console.log('Browser does not support geolocation.');
   }
+
+  // Get all the games created from the Database
   axios.get('/games/json').then(response => {
     const allGames = response.data;
 
     let markers = [];
+
+    // Create a marker for every game
     allGames.forEach(function (game) {
       let title = game.name;
       let position = {
@@ -91,8 +89,27 @@ function startMainMap () {
         scaledSize: new google.maps.Size(50, 70)
       }));
       markers.push(pin);
-      console.log(pin.position.lat());
-      console.log(pin.position.lng());
+
+      console.log(game);
+
+      let infoWindowTemplate =
+      `<div class="game-preview"> 
+      <h1>${title}</h1>
+      <h2>${game.sport}</h2>
+      <p>Players Needed: ${game.playersNeeded}</p>
+      <p>Start Time: ${game.startTime}</p>
+      <p>End Time: ${game.endTime}</p>
+      </div>
+      `;
+
+      let infowindow = new google.maps.InfoWindow({
+        content: infoWindowTemplate
+      });
+
+      pin.addListener('click', function () {
+        infowindow.open(map, pin);
+      });
+      // console.log(pin.position.lng());
     });
   });
 };

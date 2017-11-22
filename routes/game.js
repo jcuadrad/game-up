@@ -6,7 +6,10 @@ const Game = require('../models/game').Game;
 
 /* GET home page. */
 router.get('/', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
-  res.render('games');
+  const data = {
+    user: req.user
+  };
+  res.render('games', data);
 });
 
 router.get(
@@ -33,8 +36,8 @@ router.post('/new', (req, res, next) => {
   const newGame = new Game({
     name: req.body.name,
     location: location,
-    startTime: req.body.startTime,
-    endTime: req.body.endTime,
+    startTime: Date(req.body.startTime),
+    endTime: Date(req.body.endTime),
     owner: req.user._id,
     playersNeeded: req.body.playersNeeded,
     sport: req.body.sport
@@ -57,7 +60,6 @@ router.get('/games/json', (req, res, next) => {
       res.status(500).json({ error: 'FUUUUUUU!' });
     } else {
       res.json(games);
-      console.log(games);
     }
   });
 });

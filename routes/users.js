@@ -16,10 +16,9 @@ const Game = require('../models/game').Game;
 //   res.render("profile", data);
 // });
 
-/* GET users listing. */
-router.get('/profile', (req, res, next) => {
+router.get('/profile/:userId', (req, res, next) => {
   Game.find({ owner: req.user._id }, (err, result) => {
-    console.log(Game.owner);
+    console.log(result.owner);
     if (err) {
       next(err);
       return;
@@ -32,13 +31,25 @@ router.get('/profile', (req, res, next) => {
       return elem.state === 'Ended';
     });
 
-    const data = {
-      gamesCreated: gamesComingUp,
-      gamesAttended: gamesEnded,
-      upcomingGames: gamesComingUp
-    };
+    Game.find({playersAttending: { $in: [req.params.userId] }}, (err, allGames) => {
+      if (err) {
+        next(err);
+        return;
+      }
 
-    res.render('profile', data);
+      console.log(allGames);
+      const upcomingGames = allGames.filter(elem => {
+        return elem.state == 'Coming Up';
+      });
+      const data = {
+        user: req.user,
+        gamesCreated: gamesComingUp,
+        gamesAttended: gamesEnded,
+        upcomingGames: upcomingGames
+      };
+
+      res.render('profile', data);
+    });
   });
 });
 
