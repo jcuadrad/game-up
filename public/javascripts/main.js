@@ -90,8 +90,6 @@ function startMainMap () {
       }));
       markers.push(pin);
 
-      console.log(game);
-
       let infoWindowTemplate =
       `<div class="game-preview"> 
       <h1>${title}</h1>
@@ -99,6 +97,10 @@ function startMainMap () {
       <p>Players Needed: ${game.playersNeeded}</p>
       <p>Start Time: ${game.startTime}</p>
       <p>End Time: ${game.endTime}</p>
+      
+      <form action="/game/${game._id}" method="POST">
+        <input type="submit" value="Join Game">
+      </form>
       </div>
       `;
 
