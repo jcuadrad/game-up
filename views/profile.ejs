@@ -1,4 +1,6 @@
-<h1>Welcome, <%= user.username%></h1>
+<h1>Welcome,
+    <%= user.username%>
+</h1>
 
 <h2>Upcoming Games</h2>
 
@@ -6,9 +8,12 @@
     <h3>Games Joined</h3>
     <% if (upcomingGames.length) { %>
         <ul>
-          <% for (let ix = 0; ix < upcomingGames.length; ix++) { %>
-            <li><%= upcomingGames[ix].name %></li>
-          <% } %>
+            <% for (let ix = 0; ix < upcomingGames.length; ix++) { %>
+                <li>
+                    <%= upcomingGames[ix].name %>
+                </li>
+                <a href="">Leave Game</a>
+                <% } %>
         </ul>
         <% } %>
 </div>
@@ -17,9 +22,12 @@
     <h3>Games Created</h3>
     <% if (gamesCreated.length) { %>
         <ul>
-          <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
-            <li><%= gamesCreated[ix].name %></li>
-          <% } %>
+            <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
+                <li>
+                    <%= gamesCreated[ix].name %>
+                </li>
+                <a href="">Cancel Game</a>
+                <% } %>
         </ul>
         <% } %>
 </div>

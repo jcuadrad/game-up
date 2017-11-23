@@ -10,7 +10,7 @@ html {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 .container {
@@ -63,3 +63,13 @@ a {
   padding: 20px;
   color: white;
 }
+
+
+@media (min-width: 668px) {
+  #create-game-button a {
+    font-size: 40px;
+  }
+  
+  #profile-button a {
+    font-size: 40px;
+  }

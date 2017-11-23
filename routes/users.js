@@ -7,15 +7,6 @@ const Game = require('../models/game').Game;
 
 // FIND USER FROM USER ARRAY
 
-// User.find({ username: { $in: User } }, (err, user) => {
-//   if (err) {
-//     next(err);
-//     return;
-//   }
-//   const data = user;
-//   res.render("profile", data);
-// });
-
 router.get('/profile/:userId', (req, res, next) => {
   Game.find({ owner: req.user._id }, (err, result) => {
     console.log(result.owner);
@@ -31,25 +22,28 @@ router.get('/profile/:userId', (req, res, next) => {
       return elem.state === 'Ended';
     });
 
-    Game.find({playersAttending: { $in: [req.params.userId] }}, (err, allGames) => {
-      if (err) {
-        next(err);
-        return;
+    Game.find(
+      { playersAttending: { $in: [req.params.userId] } },
+      (err, allGames) => {
+        if (err) {
+          next(err);
+          return;
+        }
+
+        console.log(allGames);
+        const upcomingGames = allGames.filter(elem => {
+          return elem.state == 'Coming Up';
+        });
+        const data = {
+          user: req.user,
+          gamesCreated: gamesComingUp,
+          gamesAttended: gamesEnded,
+          upcomingGames: upcomingGames
+        };
+
+        res.render('profile', data);
       }
-
-      console.log(allGames);
-      const upcomingGames = allGames.filter(elem => {
-        return elem.state == 'Coming Up';
-      });
-      const data = {
-        user: req.user,
-        gamesCreated: gamesComingUp,
-        gamesAttended: gamesEnded,
-        upcomingGames: upcomingGames
-      };
-
-      res.render('profile', data);
-    });
+    );
   });
 });
 

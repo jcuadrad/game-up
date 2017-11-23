@@ -12,6 +12,7 @@ router.get('/', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
   res.render('games', data);
 });
 
+// LOGIN
 router.get(
   '/new',
   ensureLogin.ensureLoggedIn('/auth/login'),
@@ -23,9 +24,14 @@ router.get('/', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
   res.render('games');
 });
 
-router.get('/new', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
-  res.render('edit');
-});
+// NEW GAMES
+router.get(
+  '/new',
+  ensureLogin.ensureLoggedIn('/auth/login'),
+  (req, res, next) => {
+    res.render('edit');
+  }
+);
 
 router.post('/new', (req, res, next) => {
   let location = {
@@ -43,7 +49,7 @@ router.post('/new', (req, res, next) => {
     sport: req.body.sport
   });
 
-    // Save the game to the Database
+  // Save the game to the Database
   newGame.save(error => {
     if (error) {
       console.log(error);
@@ -72,5 +78,19 @@ router.get('/game', (req, res, next) => {
 router.post('/game', (req, res, next) => {
   res.render('/game/:id/join');
 });
+
+// DELETE GAME - under construction
+
+// router.get('/game/:gameid', (req, res, next) => {
+//   Game.findOne({_id: req.params.gameId}, (err, game) => {
+//     if (err) {
+//       next(err);
+//       return;
+//     }
+
+//       res.render('team/edit', data);
+//     );
+//   });
+// });
 
 module.exports = router;
