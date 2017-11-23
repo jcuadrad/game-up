@@ -12,7 +12,6 @@
                 <li>
                     <%= upcomingGames[ix].name %>
                 </li>
-                <a href="">Leave Game</a>
                 <% } %>
         </ul>
         <% } %>
@@ -25,8 +24,13 @@
             <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
                 <li>
                     <%= gamesCreated[ix].name %>
+                        <form action="/users/profile/<%= user._id %>/delete/<%= gamesCreated[ix]._id %>/" method="post">
+                            <button>Delete</button>
+                        </form>
+
+
                 </li>
-                <a href="">Cancel Game</a>
+
                 <% } %>
         </ul>
         <% } %>

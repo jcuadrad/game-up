@@ -20,21 +20,6 @@ router.get(
     res.render('edit');
   }
 );
-<<<<<<< HEAD
-router.get('/', ensureLogin.ensureLoggedIn('/auth/login'), (req, res, next) => {
-  res.render('games');
-});
-
-// NEW GAMES
-router.get(
-  '/new',
-  ensureLogin.ensureLoggedIn('/auth/login'),
-  (req, res, next) => {
-    res.render('edit');
-  }
-);
-=======
->>>>>>> 37e7a3cda491b5bd2554414ea389217586c71ef0
 
 router.post('/new', (req, res, next) => {
   let location = {
@@ -55,7 +40,7 @@ router.post('/new', (req, res, next) => {
   // Save the game to the Database
   newGame.save(error => {
     if (error) {
-      console.log(error);
+      return next(error);
     } else {
       res.redirect('/');
     }
@@ -74,49 +59,12 @@ router.get('/games/json', (req, res, next) => {
 });
 
 // GET GAME
-router.get('/game/:gameId', (req, res, next) => {
-  Game.findOne({_id: req.params.gameId}, (err, game) => {
-    if (err) {
-      next(err);
-      return;
-    }
-
-    if (!game) {
-      res.render('not-found');
-      return;
-    }
-
-    const data = {
-      game: game
-    };
-
-    res.render('game', data);
-  });
+router.get('/game', (req, res, next) => {
+  res.render('/game');
 });
 
-router.post('/game/:gameId', (req, res, next) => {
-  Game.findOneAndUpdate({_id: req.params.gameId},
-    {$push: {playersAttending: req.user._id}}, (err) => {
-      if (err) {
-        next(err);
-        return;
-      }
-      res.redirect('/');
-    });
+router.post('/game', (req, res, next) => {
+  res.render('/game/:id/join');
 });
-
-// DELETE GAME - under construction
-
-// router.get('/game/:gameid', (req, res, next) => {
-//   Game.findOne({_id: req.params.gameId}, (err, game) => {
-//     if (err) {
-//       next(err);
-//       return;
-//     }
-
-//       res.render('team/edit', data);
-//     );
-//   });
-// });
 
 module.exports = router;

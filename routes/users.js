@@ -47,4 +47,15 @@ router.get('/profile/:userId', (req, res, next) => {
   });
 });
 
+router.post('/profile/:id/delete/:gameId', (req, res, next) => {
+  // delete da gameid
+  Game.remove({ _id: req.params.gameId }, (err, game) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.redirect(`/users/profile/${req.user._id}`);
+  });
+});
+
 module.exports = router;
