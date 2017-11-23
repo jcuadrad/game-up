@@ -49,6 +49,14 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Make user available in templates
+app.use((req, res, next) => {
+  res.locals = {
+    user: req.user
+  };
+  next();
+});
+
 // - database
 
 mongoose.Promise = Promise;

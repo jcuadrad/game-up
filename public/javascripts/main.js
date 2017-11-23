@@ -72,6 +72,31 @@ function startMainMap () {
     // Create a marker for every game
     allGames.forEach(function (game) {
       let title = game.name;
+      let participants = game.playersAttending;
+      const dateFormated = _formatterDate(game.startTime);
+      let infoWindowJoin =
+      `<div class="game-preview">
+      <h1>${title}</h1>
+      <h2>${game.sport}</h2>
+      <p>Players Needed: ${game.playersNeeded}</p>
+      <p>Start Time: ${dateFormated}</p>
+      <p>End Time: ${game.endTime}</p>
+      <form action="/game/${game._id}" method="POST">
+        <input type="submit" value="Join">
+      </form>
+      </div>;`;
+      let infoWindowCancel =
+      `<div class="game-preview">
+      <h1>${title}</h1>
+      <h2>${game.sport}</h2>
+      <p>Players Needed: ${game.playersNeeded}</p>
+      <p>Start Time: moment(${game.startTime}</p>
+      <p>End Time: ${game.endTime}</p>
+      <form action="/game/${game._id}" method="POST">
+        <input type="submit" value="Cancel">
+      </form>
+      </div>;`;
+
       let position = {
         lat: game.location.coordinates[0],
         lng: game.location.coordinates[1]
@@ -90,30 +115,52 @@ function startMainMap () {
       }));
       markers.push(pin);
 
-      let infoWindowTemplate =
-      `<div class="game-preview"> 
-      <h1>${title}</h1>
-      <h2>${game.sport}</h2>
-      <p>Players Needed: ${game.playersNeeded}</p>
-      <p>Start Time: ${game.startTime}</p>
-      <p>End Time: ${game.endTime}</p>
-      
-      <form action="/game/${game._id}" method="POST">
-        <input type="submit" value="Join Game">
-      </form>
-      </div>
-      `;
+      if (participants.includes(userId)) {
+        let infowindowCancel = new google.maps.InfoWindow({
+          content: infoWindowCancel
+        });
 
-      let infowindow = new google.maps.InfoWindow({
-        content: infoWindowTemplate
-      });
+        pin.addListener('click', function () {
+          infowindowCancel.open(map, pin);
+        });
+      } else {
+        let infowindowJoin = new google.maps.InfoWindow({
+          content: infoWindowJoin
+        });
 
-      pin.addListener('click', function () {
-        infowindow.open(map, pin);
-      });
+        pin.addListener('click', function () {
+          infowindowJoin.open(map, pin);
+        });
+      }
       // console.log(pin.position.lng());
     });
   });
 };
 
 startMainMap();
+
+const MONTH = {
+  '1': 'January',
+  '11': 'November'
+};
+
+function _formatterDate (date) {
+  var arrWithDateAndHour = date.split('T');
+  var monthAsText = _getMonth(arrWithDateAndHour[0]);
+  var day = _getDay(arrWithDateAndHour[0]);
+
+  var dateFormated = `${monthAsText} ${day}`;
+
+  return dateFormated;
+}
+
+function _getMonth (date) {
+  // pre:- format of date AAAA-MM-DD
+  var month = date.split('-')[1];
+  return MONTH[month];
+}
+
+function _getDay (date) {
+  // pre:- format of date AAAA-MM-DD
+  return date.split('-')[2];
+}
