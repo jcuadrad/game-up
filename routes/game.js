@@ -42,7 +42,7 @@ router.post('/new', (req, res, next) => {
   // Save the game to the Database
   newGame.save(error => {
     if (error) {
-      console.log(error);
+      return next(error);
     } else {
       res.redirect('/');
     }
@@ -64,24 +64,8 @@ router.get('/games/json', (req, res, next) => {
 });
 
 // GET GAME
-router.get('/game/:gameId', (req, res, next) => {
-  Game.findOne({_id: req.params.gameId}, (err, game) => {
-    if (err) {
-      next(err);
-      return;
-    }
-
-    if (!game) {
-      res.render('not-found');
-      return;
-    }
-
-    const data = {
-      game: game
-    };
-
-    res.render('game', data);
-  });
+router.get('/game', (req, res, next) => {
+  res.render('/game');
 });
 
 router.post('/game/:gameId', (req, res, next) => {
@@ -152,19 +136,5 @@ router.post('/game/:gameId', (req, res, next) => {
   // )}
   });
 });
-
-// DELETE GAME - under construction
-
-// router.get('/game/:gameid', (req, res, next) => {
-//   Game.findOne({_id: req.params.gameId}, (err, game) => {
-//     if (err) {
-//       next(err);
-//       return;
-//     }
-
-//       res.render('team/edit', data);
-//     );
-//   });
-// });
 
 module.exports = router;
