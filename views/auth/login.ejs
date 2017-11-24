@@ -1,16 +1,26 @@
-<h1>Login</h1>
-
-<form action="/auth/login" method="POST">
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" name="username">
+<div class="login-page">
+    <h1>Game Up</h1>
+    <h2>LOGIN</h2>
+  
+   <form action="/auth/login" method="POST">
+  
+     <div class="user-input-field">
+        <label for="username">Username:</label>
+        <input type="text" name="username">
+      </div>
+      <div class="user-input-field">>
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+      </div>
+  
+  
+  
+  
+     <div id="login-button">
+        <input id="login" type="submit" value="Login">
+      </div>
+      <p>
+        <a href="/auth/signup">Sign up here</a> to create an account.</p>
+    </form>
+  
   </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" name="password">
-  </div>
-  <div>
-    <input type="submit" value="Login">
-  </div>
-  <p>If you do not yet have an account, you can <a href="/auth/signup">Signup here</a>.</p>
-</form>

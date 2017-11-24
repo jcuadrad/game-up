@@ -25,7 +25,7 @@ input[type=submit] {
 }
 
 h1 {
-  font-size: 5vw;
+  font-size: 8vw;
 }
 
 h2 {
@@ -60,9 +60,11 @@ ul {
 
 li {
   background-color: pink;
-  color: black;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: white;
   opacity: 0.8;
-  background-image: linear-gradient( -180deg, rgba(255, 120, 58, 1) 0%, #f95109 100% );
+  background-image: linear-gradient( -180deg, #200191 0%, #f95109 100% );
   border-radius: 3vw;
   padding: 10vw 3vw;
   display: flex;
@@ -70,7 +72,7 @@ li {
   align-items: center;
   word-wrap: break-word;
   width: 87vw;
-  margin: 3vw 0vw;
+  margin: 3vw 0vw -1vw 0vw;
   height: 6vw;
   text-align: center;
   padding-bottom: 11vw;
@@ -90,6 +92,56 @@ a {
 }
 
 /* Info Windows */
+
+.login-page {
+  padding: 11vw;
+}
+
+.login-page h1 {
+  font-size: 16vw;
+  text-align: center;
+  color: #200191;
+}
+
+.login-page h2 {
+  font-size: 7vw;
+}
+
+.login-page p {
+  font-size: 5vw;
+}
+
+.login-page a {
+  font-size: 5vw;
+  color: #F95109;
+}
+
+.login-page label {
+  font-size: 5vw;
+  text-align: center;
+  color: black;
+}
+
+#login {
+  background-color: #F95109;
+  color: white;
+  border-radius: 50px;
+  border: none;
+}
+
+.login-page input {
+  font-size: 5vw;
+  width: 100%;
+  padding: 3vw 0vw;
+  border: grey solid 2px;
+  font-family: "Dosis";
+  text-align: center;
+  border-radius: 50px;
+}
+
+.user-input-field {
+  padding-bottom: 6vw;
+}
 
 
 #map {
@@ -126,14 +178,15 @@ a {
 /* headings of all games */
 #allGames h3 {
   padding-bottom: 5vw;
-  border-bottom: gray solid 0.5px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.3);
   font-size: 5vw;
   /* padding-left: 11vw; */
 }
 #gamesCreated form {
   width: 100%;
-  text-align: center;
+  text-align: right;
   margin: -6vw 0vw 0vw 0vw;
+  padding-right: 9vw;
 }
 
 #upcomingGames {
@@ -172,9 +225,10 @@ a {
 #create-game-button a {
   width: 8vw;
   font-size: 5vw;
-  padding: 2vw;
+  padding: 2vw 6vw;
   color: white;
   background: #f95109;
+  border: 0.5vw solid #f95109;
   border-radius: 50px;
   font-family: "Dosis", bold;
   letter-spacing: 1vw;
@@ -237,10 +291,11 @@ a {
 #delete-button {
   font-size: 4vw;
   border: none;
-  background-color: lightgray;
+  background-color: transparent;
   border-radius: 1vw;
   padding: 2vw;
-  color: white;
+  color: grey;
+  border-color: grey;
 }
 
 #welcome-user h2 {
