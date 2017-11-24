@@ -1,41 +1,71 @@
-<h1>Welcome,
-    <%= user.username%>
-</h1>
-
-<h2>Upcoming Games</h2>
-
-<div id="upcomingGames">
-    <h3>Games Joined</h3>
-    <% if (upcomingGames.length) { %>
-        <ul>
-            <% for (let ix = 0; ix < upcomingGames.length; ix++) { %>
-                <li>
-                    <%= upcomingGames[ix].name %>
-                </li>
+<div class="header">
+        <svg width="12px" height="24px" viewBox="0 0 12 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="iPhone-8" transform="translate(-24.000000, -20.000000)" stroke="#000000">
+                    <path d="M43.7056618,25.1926862 L28.6051808,40.0375965 L43.7056618,40.0375965 L43.7056618,25.1926862 Z" id="Rectangle-2"
+                        transform="translate(35.794508, 32.268798) rotate(-225.000000) translate(-35.794508, -32.268798) "></path>
+                </g>
+            </g>
+        </svg>
+        <h1>My Events</h1>
+        <svg width="23px" height="25px" viewBox="0 0 23 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="iPhone-8" transform="translate(-328.000000, -20.000000)" fill="#000000">
+                    <path d="M339.322171,20.33778 L339.082706,20.099539 L335.502769,23.695998 L335.502769,21.7119488 C335.502769,21.6230164 335.46687,21.5361237 335.403842,21.4730959 C335.341018,21.4102721 335.253921,21.3741688 335.164989,21.3741688 L332.691403,21.3741688 C332.602471,21.3741688 332.515374,21.4102721 332.452551,21.4730959 C332.389523,21.5361237 332.353623,21.6230164 332.353623,21.7119488 L332.353623,26.8598295 L328.09833,31.134704 C328.002055,31.2315914 327.973499,31.3766165 328.02592,31.5026721 C328.078341,31.6289316 328.201133,31.7109289 328.337795,31.7109289 L330.257797,31.7109289 L330.257797,44.66222 C330.257797,44.7511524 330.2939,44.8380451 330.356724,44.9010729 C330.419548,44.9638967 330.506644,45 330.595577,45 L348.048765,45 C348.137697,45 348.22459,44.9638967 348.287618,44.9010729 C348.350441,44.8380451 348.386545,44.7511524 348.386545,44.66222 L348.386545,31.7109289 L350.306546,31.7109289 C350.443005,31.7109289 350.566001,31.6289316 350.618422,31.5026721 C350.670843,31.3766165 350.642287,31.2315914 350.546011,31.134704 L339.561636,20.099539 C339.497996,20.0354914 339.412327,20 339.322171,20 C339.231811,20 339.146346,20.0354914 339.082706,20.099539 L339.322171,20.33778 L339.082706,20.5760209 L349.493508,31.035165 L348.048765,31.035165 C347.959628,31.035165 347.872736,31.0712683 347.809708,31.1342961 C347.746884,31.1971199 347.710781,31.2842165 347.710781,31.3731489 L347.710781,44.3242361 L330.933357,44.3242361 L330.933357,31.3731489 C330.933357,31.2842165 330.897457,31.1971199 330.83443,31.1342961 C330.771606,31.0712683 330.684509,31.035165 330.595577,31.035165 L329.150833,31.035165 L332.930868,27.2377922 C332.993488,27.1745604 333.029183,27.0882797 333.029183,26.9993473 L333.029183,22.0499327 L334.827209,22.0499327 L334.827209,24.5141354 C334.827209,24.6507975 334.909818,24.7744054 335.036078,24.8264186 C335.162337,24.8786358 335.308178,24.8494676 335.404454,24.7525803 L339.561636,20.5760209 L339.322171,20.33778 L339.082706,20.5760209 L339.322171,20.33778"
+                        id="Fill-338"></path>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <div id="welcome-user">
+        <h2>Welcome,
+            <%= user.username%>
+        </h2>
+    </div>
+    <div id="allGames">
+        <div id="upcomingGames">
+            <div class="gameHeadings">
+                <h3>JOINED</h3>
+            </div>
+            <% if (upcomingGames.length) { %>
+                <ul>
+                    <% for (let ix = 0; ix < upcomingGames.length; ix++) { %>
+                        <div class="game-list">
+                            <li>
+                                <%= upcomingGames[ix].name %>
+                            </li>
+                        </div>
+                        <% } %>
+                </ul>
                 <% } %>
-        </ul>
-        <% } %>
-</div>
-
-<div id="gamesCreated">
-    <h3>Games Created</h3>
-    <% if (gamesCreated.length) { %>
-        <ul>
-            <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
-                <li>
-                    <%= gamesCreated[ix].name %>
+        </div>
+        <div id="gamesCreated">
+            <div class="gameHeadings">
+                <h3>CREATED</h3>
+            </div>
+            <% if (gamesCreated.length) { %>
+                <ul>
+                    <% for (let ix = 0; ix < gamesCreated.length; ix++) { %>
+                        <div class="game-list"></div>
+                        <li>
+                            <%= gamesCreated[ix].name %>
+                                <br>
+                        </li>
+                        <br>
                         <form action="/users/profile/<%= user._id %>/delete/<%= gamesCreated[ix]._id %>/" method="post">
-                            <button>Delete</button>
+                            <button id="delete-button">Delete Game</button>
                         </form>
-
-
-                </li>
-
+                        <br>
+                        <% } %>
+                </ul>
                 <% } %>
-        </ul>
-        <% } %>
-</div>
-
-<a href="/">Go Back</a>
-
-</div>
+        </div>
+    </div>
+    <a href="/">Go Back</a>
+    </div>

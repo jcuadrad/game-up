@@ -1,35 +1,32 @@
+<div class="create-container">
 <h1>
-    Add new place
+    CREATE A GAME
 </h1>
     <form method="POST" action="/new">
-        <label>Name</label>
-        <input type="text" name="name" placeholder="name">
-        <br>
-        <label>Sport</label>
+        <input type="text" name="name" placeholder="Name">
         
-        <select id="sport" name="sport">
+        
+        <select id="sport" name="sport" placeholder="Sport">
+            <option value="" disabled selected hidden>Choose a sport</option>
             <option value="Volleyball">Volleyball</option>
             <option value="Football">Football</option>
             <option value="Basketball">Basketball</option>
             <option value="Paddel">Paddel</option>
         </select>
-        <br>
-        <label>Place</label>
+        
+       <label>Start & End Time</label>
+        <input id="startTime" name="startTime" type="datetime-local" placeholder="When does it start?">
+        
+        
+      
+        <input id="endTime" name="endTime" type="datetime-local" placeholder="When does it end?">
+        
+        
+      
+        <input type="number" name="playersNeeded" placeholder="Players needed?">
+        
         <input id="searchTextField" type="text" size="50" placeholder="Where is your game?">
         <div id="search-map"></div>
-        
-        <br>
-        <label>Starts</label>
-        <input id="startTime" type="datetime-local">
-        
-        <br>
-        <label>Ends</label>
-        <input id="endTime" type="datetime-local">
-        
-        <br>
-        <label>Players needed</label>
-        <input type="number" name="playersNeeded" placeholder="ex: 5, 10">
-        <br>
         
         <input type="hidden" id="cityLat" name="cityLat" />
         <input type="hidden" id="cityLng" name="cityLng" />
@@ -39,6 +36,7 @@
 
         <input type="submit" name="">
     </form>
+</div>
     <script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe1EOMCU_S7p8fuPO5HQxCp6BDgDde-H0&libraries=places">
   </script>

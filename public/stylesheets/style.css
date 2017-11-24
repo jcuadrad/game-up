@@ -1,15 +1,16 @@
 body {
   height: 100%;
   margin: 0;
-  margin-bottom: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-size: 5vw;
+  margin-bottom: 0;
+  font-family: "Dosis";
 }
 
 html {
   height: 100%;
   margin: 0;
 }
+
+ul, li { margin-left: 0; padding-left: 0; }
 
 input {
   font-size: 3vw;
@@ -24,22 +25,60 @@ input[type=submit] {
 }
 
 h1 {
-  font-size: 10vw;
-}
-
-h2 {
-  font-size: 8vw;
-}
-
-h3 {
-  font-size: 6vw;
-}
-
-p {
   font-size: 5vw;
 }
 
+h2 {
+  font-size: 5vw;
+}
+
+h3 {
+  font-family: "Dosis" Light;
+  font-size: 8vw;
+  color: #000000;
+  letter-spacing: 0.77px;
+  line-height: 16.9px;
+  text-align: center;
+}
+
+p {
+  font-size: 16pt;
+}
+
+ul {
+  list-style: none;
+  font-family: "Dosis" light;
+  font-size: 5vw;
+  color: #200191;
+  letter-spacing: 2px;
+  background-color: white;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+}
+
+li {
+  background-color: pink;
+  color: black;
+  opacity: 0.8;
+  background-image: linear-gradient( -180deg, rgba(255, 120, 58, 1) 0%, #f95109 100% );
+  border-radius: 3vw;
+  padding: 10vw 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word;
+  width: 87vw;
+  margin: 3vw 0vw;
+  height: 6vw;
+  text-align: center;
+  padding-bottom: 11vw;
+}
+
 a {
+  font-size: 10vw;
+  text-decoration: none;
   color: #00b7ff;
 }
 
@@ -47,81 +86,304 @@ a {
   position: relative;
   margin: 0px;
   height: 100%;
+  overflow: hidden;
 }
 
-.game-preview {
-  padding: 20px 20px 20px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* Info Windows */
+
 
 #map {
   width: 100%;
-  height: 90%;
+  height: 100%;
   position: absolute;
   top: 0px;
   left: 0px;
   z-index: 0;
+  overflow: hidden;
 }
 
 #search-map {
-  margin-top: 5vw;
-  width: 700px;
-  height: 500px;
+  margin-top: 0vw;
+  width: 100%;
+  height: 60vw;
+  z-index: 0;
+}
+
+#myEventsHeader {
+  display: flex;
+  align-items: center;
+  background-color: pink;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#allGames {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: stretch;
+}
+/* headings of all games */
+#allGames h3 {
+  padding-bottom: 5vw;
+  border-bottom: gray solid 0.5px;
+  font-size: 5vw;
+  /* padding-left: 11vw; */
+}
+#gamesCreated form {
+  width: 100%;
+  text-align: center;
+  margin: -6vw 0vw 0vw 0vw;
+}
+
+#upcomingGames {
 }
 
 .header {
-  height: 6vw;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  align-content: stretch;
-  padding: 60px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5vw;
   z-index: 2;
   position: relative;
-}
-.footer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  padding: 60px;
-  z-index: 2;
-  position: fixed;
   height: 50px;
   bottom: 0px;
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
-
+  font-family: "Dosis", bold;
+  font-size: 20px;
+  color: #4f4f4f;
+  background-color: white;
+  letter-spacing: 3.64px;
+  line-height: 28.6px;
+  border-bottom: solid 1px gray;
+}
+.footer {
+  width: 100%;
+  display: flex;
+  top: 163vw;
+  left: -3vw;
+  z-index: 2;
+  position: fixed;
+  justify-content: space-around;
 }
 
 #create-game-button a {
+  width: 8vw;
   font-size: 5vw;
-  background-color: black;
+  padding: 2vw;
+  color: white;
+  background: #f95109;
+  border-radius: 50px;
+  font-family: "Dosis", bold;
+  letter-spacing: 1vw;
+}
+
+#my-events-button a {
+  width: 8vw;
+  font-size: 5vw;
+  padding: 2vw;
+  border: 0.5vw solid #200191;
+  border-radius: 50px;
+  font-family: "Dosis", bold;
+  color: #200191;
+  letter-spacing: 1vw;
+  background-color: white;
+  opacity: 0.8;
+}
+
+
+.game-preview {
+  padding: 0px 20px 20px 40px;
+  text-align: center;
+}
+
+.game-preview h1 {
+  font-family: Dosis-Bold;
+  font-size: 10vw;
+  color: #21108e;
+  letter-spacing: 0;
+}
+
+.game-preview h2 {
+  font-family: Dosis-Light;
+  font-size: 6vw;
+  color: #1f2526;
+  letter-spacing: 0.77px;
+  /* line-height: 16.9px; */
+}
+
+.game-preview p {
+  font-family: Dosis-Light;
+  font-size: 4vw;
+  /* font-weight: lighter; */
+  color: #1f2526;
+  letter-spacing: 0.77px;
+}
+
+.game-preview input {
+  background: #F95109;
+  border-radius: 50px;
+  font-family: Dosis-Bold;
+  font-size: 5vw;
+  color: #FFFFFF;
+  letter-spacing: 3.33px;
+  /* line-height: 36.4px; */
+  padding: 1vw 4vw;
+  border: none;
+}
+
+#delete-button {
+  font-size: 4vw;
+  border: none;
+  background-color: lightgray;
+  border-radius: 1vw;
   padding: 2vw;
   color: white;
 }
 
-#profile-button a {
-  font-size: 5vw;
-  background-color: black;
-  padding: 2vw;
-  color: white;
+#welcome-user h2 {
+  font-family: "Dosis", bold;
+  color: #200191;
+  letter-spacing: 2px;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 4vw 0vw;
 }
 
+#game-info-page {
+  padding-top: 5vw;
+  margin: 3vw 7vw;
+}
 
-@media (min-width: 668px) {
+#game-info-page h2 {
+  text-align: left;
+  font-weight: 100;
+  padding-left: 1vw;
+  width: 80%;
+  padding-bottom: 10vw;
+  line-height: 0vw;
+  color: #200191;
+  font-size: 6vw;
+}
+
+#game-info-page h3 {
+  font-size: 7vw;
+  font-weight: 100;
+  text-align: left;
+  padding-left: 1vw;
+  border-bottom: black 1px solid;
+  padding-bottom: 2vw;
+  color: gray;
+}
+
+#game-info-page a {
+  width: 8vw;
+  font-size: 5vw;
+  padding: 2vw;
+  color: white;
+  background: #f95109;
+  border-radius: 50px;
+  font-family: "Dosis", bold;
+  letter-spacing: 1vw;
+}
+
+.create-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  overflow: hidden;
+  /* /* text-align: center; */
+}
+
+.create-container h1 {
+  font-family: Dosis-Bold;
+  font-size: 10vw;
+  color: #21108e;
+  letter-spacing: 0;
+  margin: 5vw 0vw 2vw 0vw;
+}
+
+.create-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.create-container input {
+  font-family: Dosis-Light;
+  font-size: 6vw;
+  color: #1f2526;
+  letter-spacing: 0.77px;
+  text-align: center;
+  border: none;
+  border-bottom: 0.1vw solid black;
+  padding: 4vw 0vw;
+}
+
+.create-container label {
+  font-family: Dosis-Light;
+  font-size: 6vw;
+  color: #1f2526;
+  letter-spacing: 0.77px;
+  font-weight: 600;
+  text-align: center;
+  /* border: none; */
+  /* border-bottom: 0.1vw solid black; */
+  padding: 2vw;
+}
+
+.create-container #searchTextField::placeholder {
+  width: 100%;
+  font-size: 6vw;
+}
+
+.create-container #searchTextField {
+  width: 100%;
+  font-size: 4vw;
+}
+
+.create-container input[type=submit] {
+  background: #F95109;
+  border-radius: 50px;
+  font-family: Dosis-Bold;
+  font-size: 5vw;
+  color: #FFFFFF;
+  letter-spacing: 3.33px;
+  /* line-height: 36.4px; */
+  padding: 2vw 27vw;
+  z-index: 2;
+  /* margin-top: 0; */
+  position: absolute;
+  bottom: 4vw;
+
+}
+
+#sport {
+  font-family: Dosis-Light;
+  font-size: 6vw;
+  color: #1f2526;
+  letter-spacing: 0.77px;
+  text-align: center;
+  border: none;
+  border-bottom: 0.1vw solid black;
+  padding: 2vw;
+  border: none;
+  margin: 4vw;
+}
+
+/* @media (min-width: 668px) {
   #create-game-button a {
     font-size: 40px;
   }
   
   #profile-button a {
     font-size: 40px;
-  }
-}
+  } */
+/* } */

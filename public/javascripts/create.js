@@ -2,7 +2,13 @@ function initMap () {
   // Create new instance of Map
   var map = new google.maps.Map(document.getElementById('search-map'), {
     center: {lat: -33.8688, lng: 151.2195},
-    zoom: 13
+    zoom: 13,
+    zoomControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false
   });
 
   // Get the input to be autocompleted from the DOM
@@ -37,11 +43,11 @@ function initMap () {
 
     // Set the Marker Icon
     marker.setIcon(({
-      url: 'http://wfarm3.dataknet.com/static/resources/icons/set57/dbba6d94.png',
+      url: './images/gameuppin.png',
       size: new google.maps.Size(71, 71),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(35, 35)
+      scaledSize: new google.maps.Size(35, 45)
     }));
 
     // Place and show the marker in the map

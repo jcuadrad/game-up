@@ -1,17 +1,18 @@
 <div class="container">
-<div class="header">
-    <div id="profile-button">
-        <a href="/users/profile/<%= user._id %>">Profile</a>
+        <div class="header">
+            <h1>Game Up</h1>
+        </div>
+        <div id="map"></div>
+        <div class="footer">
+            <div id="my-events-button">
+                <a href="/users/profile/<%= user._id %>">My Events</a>
+            </div>
+            <div id="create-game-button">
+                <a href="/new">Create</a>
+            </div>
+        </div>
     </div>
-    <div id="create-game-button">
-        <a href="/new">Create a game</a>
-    </div>
-</div>
-<div id="map"></div>
-<div class="footer">
-    <h1 style= "font-size: 8vw">GAMEMAP</h1>
-</div>
-</div>
+    
 
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe1EOMCU_S7p8fuPO5HQxCp6BDgDde-H0&libraries=places">

@@ -1,6 +1,98 @@
 function startMainMap () {
   // --- Create new instance of the main map, and eliminate the default UI controls
   var map = new google.maps.Map(document.getElementById('map'), {
+    styles: [
+      {
+        'featureType': 'administrative',
+        'elementType': 'all',
+        'stylers': [
+          {
+            'visibility': 'on'
+          },
+          {
+            'lightness': 33
+          }
+        ]
+      },
+      {
+        'featureType': 'landscape',
+        'elementType': 'all',
+        'stylers': [
+          {
+            'color': '#f2e5d4'
+          }
+        ]
+      },
+      {
+        'featureType': 'poi.park',
+        'elementType': 'geometry',
+        'stylers': [
+          {
+            'color': '#c5dac6'
+          }
+        ]
+      },
+      {
+        'featureType': 'poi.park',
+        'elementType': 'labels',
+        'stylers': [
+          {
+            'visibility': 'on'
+          },
+          {
+            'lightness': 20
+          }
+        ]
+      },
+      {
+        'featureType': 'road',
+        'elementType': 'all',
+        'stylers': [
+          {
+            'lightness': 20
+          }
+        ]
+      },
+      {
+        'featureType': 'road.highway',
+        'elementType': 'geometry',
+        'stylers': [
+          {
+            'color': '#c5c6c6'
+          }
+        ]
+      },
+      {
+        'featureType': 'road.arterial',
+        'elementType': 'geometry',
+        'stylers': [
+          {
+            'color': '#e4d7c6'
+          }
+        ]
+      },
+      {
+        'featureType': 'road.local',
+        'elementType': 'geometry',
+        'stylers': [
+          {
+            'color': '#fbfaf7'
+          }
+        ]
+      },
+      {
+        'featureType': 'water',
+        'elementType': 'all',
+        'stylers': [
+          {
+            'visibility': 'on'
+          },
+          {
+            'color': '#acbcc9'
+          }
+        ]
+      }
+    ],
     zoomControl: true,
     mapTypeControl: false,
     scaleControl: true,
@@ -22,7 +114,7 @@ function startMainMap () {
 
           // Center map with user location and set default map zoom
         map.setCenter(userLocation);
-        map.setZoom(15);
+        map.setZoom(14);
 
         // Create user marker
         var myMarker = new google.maps.Marker({
@@ -37,8 +129,8 @@ function startMainMap () {
 
         // Set the Icon for the User
         myMarker.setIcon(({
-          url: 'http://icons.iconarchive.com/icons/danieledesantis/playstation-flat/512/playstation-circle-dark-icon.png',
-          size: new google.maps.Size(30, 30),
+          url: './images/yourpingameup.png',
+          // size: new google.maps.Size(60, 60),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(15, 15),
           scaledSize: new google.maps.Size(30, 30)
@@ -46,14 +138,14 @@ function startMainMap () {
 
         // Create user radius circle
         var cityCircle = new google.maps.Circle({
-          strokeColor: '#FF0000',
+          strokeColor: '#1f2526',
           strokeOpacity: 0.5,
           strokeWeight: 2,
-          fillColor: '#FF0000',
+          fillColor: '#1f2526',
           fillOpacity: 0.15,
           map: map,
           center: userLocation,
-          radius: 300
+          radius: 800
         });
       },
       function () {
@@ -73,14 +165,15 @@ function startMainMap () {
     allGames.forEach(function (game) {
       let title = game.name;
       let participants = game.playersAttending;
-      const dateFormated = _formatterDate(game.startTime);
+      const startTimeFormated = _dateFormated(game.startTime);
+      const endTimeFormated = _dateFormated(game.endTime);
       let infoWindowJoin =
       `<div class="game-preview">
       <h1>${title}</h1>
       <h2>${game.sport}</h2>
-      <p>Players Needed: ${game.playersNeeded}</p>
-      <p>Start Time: ${dateFormated}</p>
-      <p>End Time: ${game.endTime}</p>
+      <p>Players Needed<br> <strong>${game.playersNeeded}</strong></p>
+      <p>Start Time <br> <strong>${startTimeFormated}</strong></p>
+      <p>End Time <br> <strong>${endTimeFormated}</strong></p>
       <form action="/game/${game._id}" method="POST">
         <input type="submit" value="Join">
       </form>
@@ -90,8 +183,8 @@ function startMainMap () {
       <h1>${title}</h1>
       <h2>${game.sport}</h2>
       <p>Players Needed: ${game.playersNeeded}</p>
-      <p>Start Time: moment(${game.startTime}</p>
-      <p>End Time: ${game.endTime}</p>
+      <p>Start Time: ${startTimeFormated}</p>
+      <p>End Time: ${endTimeFormated}</p>
       <form action="/game/${game._id}" method="POST">
         <input type="submit" value="Cancel">
       </form>
@@ -107,11 +200,11 @@ function startMainMap () {
         title: title
       });
       pin.setIcon(({
-        url: 'https://openclipart.org/image/800px/svg_to_png/195874/ts-map-pin.png',
-        size: new google.maps.Size(50, 70),
+        url: './images/gameuppin.png',
+        // size: new google.maps.Size(90, 90),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(50, 70)
+        scaledSize: new google.maps.Size(30, 40)
       }));
       markers.push(pin);
 
@@ -141,15 +234,28 @@ startMainMap();
 
 const MONTH = {
   '1': 'January',
-  '11': 'November'
+  '2': 'February',
+  '3': 'March',
+  '4': 'April',
+  '5': 'May',
+  '6': 'June',
+  '7': 'July',
+  '8': 'August',
+  '9': 'September',
+  '10': 'October',
+  '11': 'November',
+  '12': 'December'
 };
 
-function _formatterDate (date) {
+function _dateFormated (date) {
   var arrWithDateAndHour = date.split('T');
   var monthAsText = _getMonth(arrWithDateAndHour[0]);
   var day = _getDay(arrWithDateAndHour[0]);
+  var hour = _getHour(arrWithDateAndHour[1]);
+  var minutes = _getMinutes(arrWithDateAndHour[1]);
 
-  var dateFormated = `${monthAsText} ${day}`;
+  var dateFormated = `${monthAsText} ${day} ${hour}:${minutes}`;
+  console.log(dateFormated);
 
   return dateFormated;
 }
@@ -163,4 +269,12 @@ function _getMonth (date) {
 function _getDay (date) {
   // pre:- format of date AAAA-MM-DD
   return date.split('-')[2];
+}
+
+function _getHour (date) {
+  return date.split(':')[0];
+}
+
+function _getMinutes (date) {
+  return date.split(':')[1];
 }
